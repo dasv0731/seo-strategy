@@ -66,6 +66,10 @@ Hazlos explícitos en cada spec. Son la diferencia entre un plan que funciona y 
 
 8. **Un predicado de cierre por fase.** Cada fase del plan declara **un** criterio "Hecho" inspeccionable (un sustantivo verificable, no "trabajo a medias"). Si para decir que una fase terminó necesitas dos respuestas independientes e inconexas, la fase está mal fusionada: pártela. El Self-Review verifica cobertura spec↔plan; este principio verifica que cada fase tenga *una* condición de salida clara — no una lista difusa. Ej.: "el buscador indexa exactamente lo que el árbol designa como indexable" (uno), no "indexabilidad + schema + CWV ok" (tres cosas en una caja).
 
+9. **Modo de renderizado = costura transversal, no tema técnico.** Cómo llega el HTML al buscador (SSR / estático / CSR / híbrido) **no es un punto más de §8**: es una decisión de arquitectura que **indexabilidad (§8 crawl) y rendimiento (§8 CWV) heredan a la vez**. Decídela en discovery (`references/01-discovery.md`: ¿el contenido crítico se ve sin ejecutar JS?) y declárala explícita en el spec, porque afecta a dos frentes que en lo demás son independientes. Si el contenido depende de JS (CSR), "estar indexable" deja de ser trivial y el costo de rendimiento se mueve al cliente. **Letal en arquitecturas a escala** (programático): verifica el modo de render *antes* de escalar contenido, o el % de indexación se cae sin aviso.
+
+10. **Criterios con fecha de caducidad (anti-osificación).** Todo juicio que dependa del **SERP de hoy** (intención de una keyword, qué premia Google para un page-type, si un término es trampa/commodity) se marca con una **condición de re-revisión** — no se trata como verdad permanente. Sin esto, el plan te empuja a ejecutar con disciplina lo correcto-de-hace-dos-años. Versión mínima: en cada decision gate (M3/M6/M9) revisa al menos un criterio SERP-dependiente y pregunta "¿sigue vigente?". No es una skill aparte todavía; es un hábito que se activa cuando hay datos post-ejecución que lo alimenten.
+
 ---
 
 ## Índice de referencias
