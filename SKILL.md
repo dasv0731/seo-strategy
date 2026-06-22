@@ -64,6 +64,8 @@ Hazlos explícitos en cada spec. Son la diferencia entre un plan que funciona y 
 
 7. **Separar informacional (blog) de transaccional (hubs).** Las queries informacionales viven en el blog y enlazan obligatoriamente a su hub comercial; los hubs no se diluyen con contenido informacional. El blog alimenta conversión y construye topical authority.
 
+8. **Un predicado de cierre por fase.** Cada fase del plan declara **un** criterio "Hecho" inspeccionable (un sustantivo verificable, no "trabajo a medias"). Si para decir que una fase terminó necesitas dos respuestas independientes e inconexas, la fase está mal fusionada: pártela. El Self-Review verifica cobertura spec↔plan; este principio verifica que cada fase tenga *una* condición de salida clara — no una lista difusa. Ej.: "el buscador indexa exactamente lo que el árbol designa como indexable" (uno), no "indexabilidad + schema + CWV ok" (tres cosas en una caja).
+
 ---
 
 ## Índice de referencias
