@@ -36,3 +36,4 @@ Contrastar la salida contra el checklist "Cobertura esperada" del escenario. Un 
 | `escenario-ecommerce.md` | Parametrización vertical, facetas, Product schema, país MX, conversión purchase |
 | `escenario-saas.md` | Dimensiones SaaS, comparativas BOFU, GDPR/consent, trial |
 | `escenario-local-multisede.md` | Multi-sede real, booking, restaurante, país CO, alcance trimestral |
+| `escenario-optimizacion-continua.md` | Sitio sano sin rediseño: quick wins, pruning, canibalización, KPI de crecimiento (variante de `13`) |

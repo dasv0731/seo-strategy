@@ -2,6 +2,9 @@
 
 **Cuándo leer:** discovery Nivel 1 dice "estado del sitio = con tráfico". Este archivo **modifica el plan de Fase 1** de `12-plan-phases.md`: inserta las fases M0-M2 antes de la Fase 1 y amplía Pre-launch/Launch/Post-launch (13-15).
 
+## Variante: sitio existente SIN rediseño ni migración (optimización continua)
+Si el cliente **no va a tocar URLs ni stack** (retainer de optimización), de este archivo aplican solo: **M0** (inventario + benchmark), la **matriz keep/improve/consolidate/kill** (301 solo para consolidaciones puntuales) y los **quick wins**. **Omitir** mapa 301 masivo y crawl diff staging — no hay switch. El KPI **no es retención sino crecimiento vs benchmark** (romper el estancamiento). El resto del engagement se arma con: SERP reality check de flagship (`03`), canibalización por intención (`03`), pruning trimestral con los criterios de `09`, mejora técnica dirigida (`07`) y gates por trimestre (`10`).
+
 ## Regla cero
 El KPI de una migración es **retención, no crecimiento** (objetivo: ≥90-95% de clics a semana 6-8). **Declarar al cliente por escrito la fluctuación esperada**: 2-6 semanas de baile de rankings es normal, no un fracaso. Evitar combinar en un mismo release cambio de dominio + reestructura de URLs + rediseño + reescritura de contenido; si el negocio lo obliga, el benchmark debe ser más fino para poder aislar la causa de cualquier caída.
 

@@ -61,3 +61,15 @@ Prompts idénticos; agentes frescos. **4/4 sin regresiones y con los elementos n
 | local-multisede | SERP reality check con implicación de agregadores ("optimizar presencia EN ellos") · UTM por sede "sin esto el Tier 2.5 queda ciego" · `ProfilePage` del chef · gate M3 con umbral de congelamiento, acotado al alcance trimestral |
 
 **Estado:** los 7 fallas y 12 huecos del análisis 2026-07-08 están aplicados (F1-F7, H1-H12, G1-G7 + menores). El skill queda como referencia general multi-rubro. Estos 4 escenarios son la suite de regresión para cualquier edición futura.
+
+---
+
+## Escenario 5: optimización continua sin rediseño (RED → variante en `13` → GREEN)
+
+**RED (~8.5/10):** el skill casi cubre el caso — respetó el "no rediseño" (cero fases de construcción), M0+matriz+quick wins, canibalización por intención, técnica dirigida, runbook, gate trimestral. Costuras: el agente tuvo que **inventarse** un "modo optimización in-situ" de `13` (improvisación = varianza) y arrastró "retención" como marco cuando el KPI correcto era crecimiento (lo auto-corrigió en la sección de KPIs).
+
+**Fix aplicado:** variante explícita de 5 líneas en `13-migracion-sitio-existente.md` — sin rediseño aplican solo M0 + matriz + quick wins; omitir mapa 301 masivo y crawl diff; **KPI = crecimiento vs benchmark, no retención**; el resto se arma con SERP check (`03`) + pruning (`09`) + técnica (`07`) + gates (`10`).
+
+**GREEN (10/10):** citó la variante por nombre ("KPI = crecimiento vs benchmark, no retención"), omitió mapa 301 masivo/crawl diff con la razón correcta ("no hay switch"), SERP reality check integrado al M0, pruning con criterios ("-30% YoY, no intuición"), canibalización por intención, técnica dirigida LCP 3.2→2.0, gate trimestral que decide la renovación, y detectó el decay normativo (SAT/CFDI) como restricción propia del rubro contable.
+
+**Conclusión de diseño:** NO se necesita un skill aparte para sitios existentes — el branch se resuelve dentro de `13` con la variante. Un skill separado duplicaría el 80% de la metodología.
