@@ -14,8 +14,9 @@ Un **grafo JSON-LD** con `@id` referenciado entre nodos para que el motor entien
 | `Service` | cada servicio | descripción + `provider` link |
 | `OfferCatalog` + `Offer` | hubs de servicio | subservicios como ofertas |
 | `WebPage` + `BreadcrumbList` | todas | navegación |
-| `FAQPage` | servicios, sectores, Home, contacto, primera-sesión | rich snippet FAQ |
-| `Article` / `TechArticle` / `BlogPosting` | blog | autoría + fecha (`author`→Person) |
+| `FAQPage` | servicios, sectores, Home, contacto, primera-sesión | estructura extractable para GEO/AI — el rich snippet FAQ solo aparece para sitios gubernamentales/salud de alta autoridad desde 2023; no prometerlo |
+| `Article` / `TechArticle` / `BlogPosting` | blog | autoría + fechas (`author`→Person, `datePublished` + `dateModified`; en YMYL: fecha de revisión + revisor **visibles en la página**, no solo en el schema) |
+| `ProfilePage` | páginas de bio del equipo | E-E-A-T persona-céntrico (`mainEntity`→Person) — soportado por Google desde 2024 |
 | `Article` con `about`→Service | casos | caso como prueba E-E-A-T |
 | `Person` | equipo / bios | autoría con `knowsAbout`, `hasCredential` |
 | `ContactPoint` | anidado en Organization | WhatsApp + email + teléfono |
@@ -30,6 +31,7 @@ Un **grafo JSON-LD** con `@id` referenciado entre nodos para que el motor entien
 - Cuando dudes del tipo correcto, usa el más cercano + multi-type array (`["MedicalBusiness","ProfessionalService"]`).
 
 ## Esqueleto del grafo en Home (patrón)
+*(Placeholders `{ISO-país}` / `es-{PAÍS}`: usar SIEMPRE el país/idioma del cliente — ver reglas en `00-parametrizacion-vertical.md`. Los planes originales usaron `EC` / `es-EC`.)*
 ```json
 {
   "@context": "https://schema.org",
@@ -38,16 +40,19 @@ Un **grafo JSON-LD** con `@id` referenciado entre nodos para que el motor entien
       "name": "...", "url": "{base}/", "logo": {"@type":"ImageObject","url":"..."},
       "founder": [{"@id": "{base}/equipo#persona"}],
       "sameAs": ["LinkedIn","Facebook","Instagram"],
-      "contactPoint": [{"@type":"ContactPoint","telephone":"+...","areaServed":"EC","availableLanguage":"es"}] },
+      "contactPoint": [{"@type":"ContactPoint","telephone":"+...","areaServed":"{ISO-país}","availableLanguage":"es"}] },
     { "@type": "WebSite", "@id": "{base}/#website",
-      "url": "{base}/", "publisher": {"@id": "{base}/#organization"}, "inLanguage": "es-EC" },
+      "url": "{base}/", "publisher": {"@id": "{base}/#organization"}, "inLanguage": "es-{PAÍS}" },
     { "@type": ["ProfessionalService","{tipo-vertical}"], "@id": "{base}/#localbusiness",
       "name": "...", "telephone": "+...", "priceRange": "$$-$$$",
-      "address": {"@type":"PostalAddress","addressLocality":"...","addressRegion":"...","addressCountry":"EC"},
+      "address": {"@type":"PostalAddress","addressLocality":"...","addressRegion":"...","addressCountry":"{ISO-país}"},
       "areaServed": [{"@type":"City","name":"..."}],
       "hasOfferCatalog": {"@type":"OfferCatalog","itemListElement":[
         {"@type":"Offer","itemOffered":{"@type":"Service","@id":"{base}/servicios/...#service"}}
-      ]} }
+      ]} },
+    { "@type": "Person", "@id": "{base}/equipo#persona",
+      "name": "...", "jobTitle": "...", "worksFor": {"@id": "{base}/#organization"},
+      "knowsAbout": ["...", "..."], "sameAs": ["LinkedIn"] }
   ]
 }
 ```

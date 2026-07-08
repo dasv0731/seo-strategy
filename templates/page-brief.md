@@ -5,10 +5,11 @@
 |---|---|
 | Header | Logo + menú + CTA primario |
 | Footer | NAP + hubs (servicios/sectores/ubicaciones) + legales + redes |
-| WhatsApp flotante | Defer, sin tapar contenido, sin CLS |
+| CTA flotante | Canal principal del discovery (WhatsApp / llamada / reserva / carrito) — defer, sin tapar contenido, sin CLS |
 | Breadcrumbs | Todas excepto Home + `BreadcrumbList` |
 | CTA secundario | Mid-page |
 | Mobile-first | Tap ≥48px, texto ≥16px |
+| Imágenes | ALT descriptivo + archivo nombrado con keyword + WebP |
 | Tono | [definir: técnico / cálido / ...] |
 
 ## Brief por página
@@ -31,7 +32,7 @@ TL;DR (40-60 palabras, GEO-citable): ...
 [Bloque 4: Prueba — casos / credenciales / marcas]
 [Modalidad / cobertura]
 FAQ (4-6, pregunta H3 + respuesta directa 1ª oración):
-CTA FINAL: [WhatsApp + form | agenda] + mensaje prellenado
+CTA FINAL: [según modelo de conversión: WhatsApp + form | agenda | carrito | trial] + mensaje prellenado si aplica
 [YMYL: Disclaimer + Crisis Box]
 [Bloque de autoría → Person]
 

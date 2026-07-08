@@ -13,6 +13,13 @@ Documenta el elegido, los **descartados** y el **trade-off aceptado**.
 
 **Regla de oro:** elige por **tamaño y recursos reales**. Copiar la matriz cruzada a un negocio pequeño produce páginas thin y canibalización — **penalización grave en YMYL**. Una persona no sostiene decenas de páginas únicas.
 
+## SERP reality check (obligatorio ANTES de fijar el enfoque)
+El enfoque se elige por tamaño/recursos **y** por lo que el SERP premia hoy. Para las 5-10 keywords flagship, revisar el SERP real: **¿qué TIPO de página está en el top 10?** (service page, directorio/marketplace, guía informacional, comparativa, local pack, e-commerce).
+- Si el SERP transaccional lo dominan directorios/marketplaces → una service page propia no rankeará por bien construida que esté: cambiar la apuesta (long-tail, local, comparativas) o competir por presencia EN esos agregadores.
+- Registrar en §2: tipo de página dominante por keyword flagship + la implicación aceptada.
+- Con datos en vivo: vía `orquestador-seo` (`claude-seo:seo-sxo` para page-type mismatch, `seo-dataforseo` para SERPs). Manual: incógnito + clasificar el top 10.
+- Este juicio **caduca** (principio 10): re-revisar en cada decision gate.
+
 ---
 
 ## Reglas de slug
@@ -27,6 +34,7 @@ Ejemplos de dimensiones canónicas:
 - **Ubicaciones** — local SEO / service area.
 - **Casos** — prueba E-E-A-T transversal.
 - **Blog** — pillar + clusters (informacional).
+- **Comparativas / alternativas** — BOFU ("X vs Y", "alternativas a X", "mejores X para [caso]", guías de selección): el content-type que más convierte en ciclos largos/SaaS y el que mejor sobrevive a AI Overviews. Obligatorio evaluarlo en B2B y SaaS.
 
 ## Reglas canónicas
 - Canonical auto-referente por content-type.
@@ -77,3 +85,11 @@ Resolución: por **mayor intent local/sectorial** + medición trimestral de impr
 
 ## Separación informacional ↔ transaccional
 Las queries **informacionales viven en el blog** (pillar + clusters) y **enlazan obligatoriamente a su hub comercial**. Los hubs no se diluyen con contenido informacional. Así el blog alimenta conversión y construye topical authority sin canibalizar el intent transaccional.
+
+---
+
+## Bilingüe / multi-región (solo si discovery Nivel 1 lo marca)
+- Estructura: subdirectorios `/en/` (default — consolida autoridad) > subdominios > ccTLDs (solo multi-región real con equipos separados).
+- Hreflang recíproco + auto-referente por página; `x-default` a la versión principal.
+- **Solo abrir un idioma si habrá contenido completo y mantenido en él** — medio sitio traducido = thin + señales mixtas. Mejor un idioma bien que dos a medias.
+- Implementación y auditoría: `claude-seo:seo-hreflang`.

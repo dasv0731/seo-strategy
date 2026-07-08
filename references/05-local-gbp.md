@@ -17,7 +17,7 @@
 | Categorías secundarias | Hasta 9, relevantes |
 | Service area | Ciudad(es) + país si hay atención online |
 | Teléfono | Fijo + WhatsApp Business |
-| Sitio | URL canónica |
+| Sitio | URL canónica **con UTM** (`?utm_source=gbp&utm_medium=organic`) — sin esto el tráfico de GBP se reporta como directo y el Tier 2.5 queda ciego |
 | Horario | Por día |
 | Atributos | "Atiende emergencias", "Presupuestos sin costo", "Atención online", "Requiere cita"… |
 | Servicios | Lista de servicios/áreas + spokes |

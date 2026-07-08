@@ -13,6 +13,8 @@ Output: `docs/superpowers/plans/YYYY-MM-DD-{cliente}-seo-mesN-plan.md`
 ## Fase 0 — Pre-requisitos (BLOQUEANTE)
 Datos del cliente antes de tocar nada técnico: crear **checklist de datos privada**, marcar datos críticos por fase, confirmar dominio (whois), **validar credenciales reales** (YMYL), confirmar compromisos operativos sostenibles del copy.
 
+**Sitio existente con tráfico:** insertar las fases M0-M2 de `references/13-migracion-sitio-existente.md` (inventario+benchmark, matriz keep/kill, mapa 301) antes de la Fase 1; Pre-launch (13) añade el crawl diff staging vs producción y Launch/Post-launch (14-15) usan su ventana de monitoreo.
+
 ## Las 15 fases (genéricas, reordenables según stack)
 1. **Infraestructura** — hosting, DNS/CDN, SSL, config base, .htaccess/redirects.
 2. **Hardening + módulos core** — security, backups, redirects, cleanup de bloat.

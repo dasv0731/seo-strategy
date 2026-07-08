@@ -15,7 +15,7 @@ Hosting de alto rendimiento **cerca de la audiencia** + CDN con optimización de
 | FCP | ≤ 1.5s | ≤ 1.2s |
 
 ## Optimizaciones obligatorias
-- **Imágenes**: WebP + AVIF fallback; hero ≤ 150KB; `width`/`height` explícitos; lazy load excepto el LCP.
+- **Imágenes**: WebP + AVIF fallback; hero ≤ 150KB; `width`/`height` explícitos; lazy load excepto el LCP; **alt text descriptivo obligatorio** (natural, sin stuffing) + nombre de archivo con keyword (`mantenimiento-chillers-lima.webp`, no `IMG_1234.jpg`).
 - **Fonts**: 1 familia máx., self-hosted, `font-display: swap` + preload (no CDN de Google Fonts).
 - **JS**: defer/async todo lo no crítico; widget de chat con defer; GTM diferido 2-3s; sin librerías pesadas.
 - **CSS**: critical CSS inline en `<head>`, resto async.
@@ -40,6 +40,7 @@ Index + un sitemap por content-type + posts + imágenes:
   ├── sitemap-posts.xml
   └── sitemap-images.xml
 ```
+`lastmod` **solo si es fidedigno** (fecha real de cambio de contenido, no del deploy): Google lo usa cuando es confiable y lo ignora para siempre si detecta que miente.
 
 ## Headers de seguridad
 ```http
@@ -52,19 +53,23 @@ Content-Security-Policy: default-src 'self'; [extender]
 HSTS preload tras 6 meses estables.
 
 ## Mobile-first
-Viewport correcto · tap targets ≥ 48×48px · texto ≥ 16px · botón flotante (WhatsApp) sin tapar contenido ni generar CLS.
+Viewport correcto · tap targets ≥ 48×48px · texto ≥ 16px · botón flotante del canal principal de conversión (WhatsApp / llamada / reserva) sin tapar contenido ni generar CLS.
 
 ## IndexNow
 Activar + validar `{base}/{key}.txt` accesible. Auto-ping en publish/update/delete a Bing, Yandex, Naver, Seznam.
+
+## Escala (solo si el inventario indexable proyectado > ~1.000 URLs)
+E-commerce, programático, publishers: **análisis de logs** (qué rastrea Googlebot realmente) · crawl budget (eliminar cadenas de redirects, 404 masivos, facetas rastreables infinitas) · reglas de facetas/paginación explícitas · escalar contenido **por lotes con gate de indexación** (verificar % indexado del lote anterior antes de abrir el siguiente — principio 9). En sitios < ~1.000 URLs, omitir: el crawl budget no es la restricción.
 
 ## Setup de medición
 | Herramienta | Setup |
 |---|---|
 | Google Search Console | Property domain + verificación DNS TXT + submit sitemap_index |
 | Bing Webmaster | Importar de GSC + registrar IndexNow key |
-| GA4 | Enhanced measurement ON + eventos custom: `whatsapp_click`, `form_submit`, `phone_click`, `case_view`, `booking_click` |
+| GA4 | Enhanced measurement ON + eventos custom **según el modelo de conversión del discovery** — lead: `form_submit`, `phone_click`, `whatsapp_click` · booking: `booking_click` · e-commerce: `view_item`, `add_to_cart`, `purchase` · SaaS: `trial_signup`, `demo_request` (+ `case_view` si hay casos) |
 | Cloudflare Web Analytics | Backup privacy-friendly |
 | GTM | Container único, defer 2s |
+| Consentimiento | Banner + **Google Consent Mode v2** — obligatorio con audiencia UE, recomendado donde aplique ley local (LGPD, LFPDPPP, LOPDP…). Diferir GTM no exime del consentimiento; el defer distorsiona la atribución de sesiones cortas — documentarlo en el spec |
 
 ## Mantenimiento (cron)
 | Frecuencia | Tarea |

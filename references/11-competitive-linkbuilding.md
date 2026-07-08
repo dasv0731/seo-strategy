@@ -25,3 +25,9 @@ Predominio **branded + naked URL**; exact-match muy bajo (<5-10%) para evitar se
 
 ## Playbook de outreach
 Email **3-4 líneas, value-first**: contexto de por qué tu recurso aporta a SU página específica, sin pedir nada agresivo. Personalizado, no plantilla masiva. Seguir 1 vez a la semana.
+
+## Costos orientativos (para el presupuesto de §13)
+Citations/directorios $0-50 c/u · guest post en revista sectorial $150-500 · digital PR / activo linkeable (página de datos, herramienta): producción interna + 10-20 h de outreach por pieza. **Desconfiar de links "garantizados" de <$100** — granjas que terminan en disavow.
+
+## Re-auditoría competitiva (ligada a los gates)
+La ficha de `templates/competitive-audit.md` es una foto de M1-2. **Re-auditar los Tier 2-3 en cada decision gate (M3/M6/M9)**: cambios de cadencia, content-types nuevos, schema nuevo, links ganados — y ajustar la estrategia gap-por-gap. Sin esto, se ejecuta contra un competidor que ya no existe.

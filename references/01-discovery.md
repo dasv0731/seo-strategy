@@ -14,7 +14,7 @@ Output: `docs/superpowers/discovery/YYYY-MM-DD-{cliente}-discovery.md`.
 | Año de fundación, país, ciudad sede, tamaño de equipo | Organization schema, E-E-A-T |
 | Modelo de negocio en una frase | Define todo el enfoque |
 | Dominio: ¿confirmado / disponible / WHOIS / quién tiene acceso? | Bloqueante técnico |
-| **Estado del sitio**: greenfield / básico (rehacer URLs libre) / con tráfico (requiere migración con 301) | Cambia el plan de Fase 1 por completo |
+| **Estado del sitio**: greenfield / básico (rehacer URLs libre) / con tráfico (requiere migración con 301 → `references/13-migracion-sitio-existente.md`) | Cambia el plan de Fase 1 por completo |
 | Idioma: único / bilingüe / selectivo | Hreflang, arquitectura |
 | **Modelo de conversión**: compra / lead / WhatsApp / llamada / booking + ciclo de venta | CTAs, tracking, atribución |
 | Alcance del entregable (ver escala abajo) + plazo | Tamaño del spec |

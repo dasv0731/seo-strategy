@@ -14,16 +14,18 @@ Guía el pipeline completo de una estrategia SEO:
 Discovery → Design Spec (§0–§14) → Planes por mes/trimestre → Contenido → KPIs
 ```
 
-con 7 principios transversales (el #1: identificar la *restricción dominante* antes de la arquitectura).
+con 10 principios transversales (el #1: identificar la *restricción dominante* antes de la arquitectura), parametrizable a cualquier rubro y con playbook de migración para sitios existentes con tráfico.
 
 ## Estructura
 
 ```
 SKILL.md            Punto de entrada: pipeline, principios, índice, anti-patrones
-references/         13 referencias temáticas (discovery, spec, arquitectura, schema,
-                    local/GBP, GEO/E-E-A-T, technical, keywords, contenido, KPIs,
-                    link building, fases de plan, case-studies comparativo)
+references/         15 referencias temáticas (parametrización por rubro, discovery, spec,
+                    arquitectura, schema, local/GBP, GEO/E-E-A-T, technical, keywords,
+                    contenido, KPIs, link building, fases de plan, migración de sitio
+                    existente, case-studies comparativo)
 templates/          4 plantillas (content-brief, page-brief, competitive-audit, team-bio)
+tests/              escenarios de regresión por rubro (correr tras cada edición del skill)
 ```
 
 ## Instalación

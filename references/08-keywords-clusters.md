@@ -9,12 +9,16 @@
 ## Estructura de una tabla de cluster
 Una por servicio flagship + secundarios + por sector + por ubicación:
 
-| Keyword | Intent | Página canónica | Vol. estimado |
-|---|---|---|---|
-| automatización industrial | comercial | hub | 200-500 |
-| programación PLC Siemens | comercial | spoke PLC | 30-100 |
-| empresa automatización Quito | transaccional | `/ubicaciones/quito` | 30-100 |
-| permisos ARCERNNR | informacional | blog | — |
+| Keyword | Intent | Página canónica | Vol. | Dificultad | SERP hoy | Prioridad |
+|---|---|---|---|---|---|---|
+| automatización industrial | comercial | hub | 200-500 | media | AI Overview + service pages | P1 |
+| programación PLC Siemens | comercial | spoke PLC | 30-100 | baja | service pages nicho | P1 |
+| empresa automatización Quito | transaccional | `/ubicaciones/quito` | 30-100 | baja | local pack + directorios | P2 |
+| permisos ARCERNNR | informacional | blog | — | baja | guías, sin AI Overview | P3 |
+
+- **Dificultad**: KD de la herramienta o proxy manual (DR del top 10 vs el propio).
+- **SERP hoy**: features presentes (¿AI Overview? ¿local pack? ¿shopping?) + **qué tipo de página rankea** (ver SERP reality check en `03`). Columna que caduca — re-revisar en gates (principio 10).
+- **Prioridad**: valor de negocio (flagship/margen/intent) × esfuerzo (dificultad + contenido necesario). P1 se produce primero; una keyword de volumen alto con SERP hostil puede ser P3.
 
 Cada cluster de servicio define su **pillar de blog** + N posts cluster (cola larga). Las queries informacionales → blog, enlazando al hub comercial.
 

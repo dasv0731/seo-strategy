@@ -1,6 +1,6 @@
 ---
 name: seo-master-plan
-description: Use when starting or scoping a full SEO strategy for any business (B2B, B2C, local, e-commerce, YMYL, SaaS). Guides the complete pipeline — discovery → design spec → phased implementation plans → content → KPIs — distilled from two real 12-month plans (B2B industrial cross-matrix and YMYL person-based health). Stack-agnostic. Triggers on "plan SEO", "SEO strategy", "estrategia SEO", "auditar y planear SEO", "arquitectura SEO", "content cluster plan", "GEO / AI Overviews plan".
+description: Use when starting, scoping, or restructuring the SEO strategy of any business or vertical (B2B, B2C, local, e-commerce, SaaS, YMYL, publishers, marketplaces) — new site, existing site with traffic, or migration/redesign. Stack-agnostic. Triggers on "plan SEO", "SEO strategy", "estrategia SEO", "auditar y planear SEO", "arquitectura SEO", "migración SEO", "rediseño con SEO", "content cluster plan", "GEO / AI Overviews plan".
 ---
 
 # SEO Master Plan — punto de entrada
@@ -35,10 +35,11 @@ El spec se construye con el skill `superpowers:brainstorming`; los planes con `s
 
 **Si empiezas un proyecto nuevo:** trabaja el pipeline en orden.
 1. Corre discovery (`references/01-discovery.md`) — no avances sin los datos del Nivel 1 (bloqueantes).
-2. **Identifica la restricción dominante** (ver principio 1 abajo) antes de decidir arquitectura.
-3. Elige enfoque de arquitectura justificando descartados y trade-off (`references/03-architecture.md`).
-4. Redacta el spec sección por sección (`references/02-spec-skeleton.md`), apoyándote en las referencias temáticas.
-5. Deriva planes de implementación por fase (`references/12-plan-phases.md`).
+2. **Ubica el rubro** en `references/00-parametrizacion-vertical.md` e **identifica la restricción dominante** (ver principio 1 abajo) antes de decidir arquitectura.
+3. **Si el sitio ya existe con tráfico:** lee `references/13-migracion-sitio-existente.md` — el inventario y el benchmark van ANTES de diseñar la arquitectura, y la Fase 1 del plan cambia por completo.
+4. Elige enfoque de arquitectura justificando descartados y trade-off (`references/03-architecture.md`).
+5. Redacta el spec sección por sección (`references/02-spec-skeleton.md`), apoyándote en las referencias temáticas.
+6. Deriva planes de implementación por fase (`references/12-plan-phases.md`).
 
 **Si refinas un proyecto existente:** ve directo a la referencia temática relevante (schema, GEO, local, KPIs…).
 
@@ -54,7 +55,7 @@ Hazlos explícitos en cada spec. Son la diferencia entre un plan que funciona y 
 
 2. **Honestidad estructural.** Nunca markup `Review`/`AggregateRating` falso. Nunca credenciales/certificaciones no verificables. Todo dato real pendiente va como placeholder explícito (`XXXX` / `// CONFIRMAR`) + entra en una **checklist de datos privada** que se mapea a las fases que lo consumen. En YMYL esto es regla de oro; en B2B también (registros, RUC, membresías).
 
-3. **GEO/AI como ciudadano de primera clase.** robots.txt con allowlist de crawlers AI, `llms.txt` en raíz, citability passage-level (TL;DR 40-60 palabras, FAQ con respuesta directa en la 1ª oración, auto-suficiencia por párrafo), optimización por plataforma. No es un apéndice: va integrado al contenido. Ver `references/06-geo-eeat.md`.
+3. **GEO/AI como ciudadano de primera clase.** robots.txt con allowlist de crawlers AI, citability passage-level (TL;DR 40-60 palabras, FAQ con respuesta directa en la 1ª oración, auto-suficiencia por párrafo), optimización por plataforma; `llms.txt` solo como apuesta opcional de bajo costo (ninguna plataforma mayor confirma usarlo). No es un apéndice: va integrado al contenido. Ver `references/06-geo-eeat.md`.
 
 4. **E-E-A-T basado en personas reales.** La autoridad se ancla en humanos verificables (bios, credenciales con `ImageObject`, `Person` schema con `knowsAbout`), no en una entidad anónima. En negocios persona-céntricos (`Person` es el núcleo); en corporativos, el equipo respalda a `Organization`.
 
@@ -76,6 +77,7 @@ Hazlos explícitos en cada spec. Son la diferencia entre un plan que funciona y 
 
 | Archivo | Cuándo leerlo |
 |---|---|
+| `references/00-parametrizacion-vertical.md` | Tras discovery, antes de arquitectura — tabla de parámetros por rubro |
 | `references/01-discovery.md` | Al iniciar — cuestionario de 4 niveles para el intake |
 | `references/02-spec-skeleton.md` | Para redactar el spec — esqueleto §0–§14 |
 | `references/03-architecture.md` | Decidir enfoque, URLs, content-types, internal linking, anti-canibalización |
@@ -88,6 +90,7 @@ Hazlos explícitos en cada spec. Son la diferencia entre un plan que funciona y 
 | `references/10-kpis.md` | Jerarquía KPI 3 tiers, reporting, atribución |
 | `references/11-competitive-linkbuilding.md` | Tiers de competidores, auditoría, outreach |
 | `references/12-plan-phases.md` | Las ~15 fases de un plan de implementación |
+| `references/13-migracion-sitio-existente.md` | Sitio existente con tráfico — inventario, matriz keep/kill, 301, quick wins, monitoreo |
 | `references/case-studies.md` | Cómo el mismo esqueleto se adapta: AioTech vs Inspira |
 | `templates/content-brief.md` | Brief de 1 página por pieza de contenido |
 | `templates/page-brief.md` | Brief de página con copy completo |

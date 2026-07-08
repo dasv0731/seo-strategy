@@ -18,7 +18,7 @@ FORMACIÓN:
   - Posgrados / formaciones
 
 CREDENCIALES / REGISTROS (verificables → hasCredential):
-  - Registro profesional (SENESCYT / MSP / colegio / nº) // CONFIRMAR vigente
+  - Registro profesional del país (p.ej. SENESCYT/MSP en EC, cédula profesional en MX, colegiado en ES / nº) // CONFIRMAR vigente
   - Certificaciones (con ImageObject si se muestran)
   - Membresías (→ memberOf)
 
@@ -26,7 +26,7 @@ EXPERIENCIA DESTACADA: [proyectos / casos / años]
 
 CONTACTO / sameAs:
   - LinkedIn público
-  - [Doctoralia / perfil sectorial]
+  - [directorio sectorial del mercado (p.ej. Doctoralia en salud)]
   - email profesional
 
 → Mapea a schema Person:
