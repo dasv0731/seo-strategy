@@ -175,10 +175,13 @@ el master **consume `arquitectura.csv` como su §2/§3** (deja de regenerar la a
 internamente); en greenfield el árbol es la fuente de qué páginas construir (lo consumen
 diseno-secciones + content-engine). Esto es el corazón del rework de master-plan.
 
-**G4 · orquestador-seo está ciego a 3 skills instaladas** (arquitectura-seo, linkbuilding,
-geo-audit) y usa refs internas de master-plan + claude-seo:* en su lugar. Su
-`references/02-contratos.md` es el sitio para formalizar el mapa producto/consumo. → Reescribir el
-routing del orquestador para delegar a las skills propias (ver fase de orquestador, después del master).
+**G4 · orquestador-seo ciego al ecosistema. ✅ HECHO (2026-07-14):** se reworkeó el CONTENIDO de
+orquestador-seo — routing a las skills dueñas del ecosistema (claude-seo = gap-filler), alta delegada
+a seo-setup-cliente + base-cliente sobre `Clientes\<slug>\` (sin repo por cliente ni registro central),
+modelo de fases espejo de los escenarios A/B con la espina FRAMING→arquitectura-seo→ENSAMBLAJE.
+`references/02-contratos.md` reescrito como mapa producto/consumo; `plantilla-cliente/` + refs 00/01
+borradas; README/INSTALL alineados. 6 tasks vía subagent-driven (implementer+reviewer Opus por task).
+Diseño y plan en `docs/rework/2026-07-14-g4-orquestador-seo-rework-{design,plan}.md`.
 
 **G5 (menor) · seo-vitals usa `cwv\seo.db` aparte.** Integración con dashboard marcada "futuro".
 → Decidir: ¿unificar en `data\seo.db` o dejar la CWV en su base y que el dashboard lea ambas?
