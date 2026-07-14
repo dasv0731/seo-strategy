@@ -16,16 +16,23 @@ Es **agnóstico al stack**: la metodología (arquitectura, clusters, schema, GEO
 
 ---
 
-## El pipeline (los 3 artefactos)
+## El pipeline (framing → arquitectura-seo → ensamblaje)
 
 ```
-Cuestionario Discovery  →  Design Spec (§0–§14)  →  Planes por mes/trimestre  →  Contenido + KPIs
-   (intake)                 (arquitectura)            (tareas ejecutables)
+Discovery + Framing   →   arquitectura-seo    →   Ensamblaje del Spec   →   Planes   →   Contenido + KPIs
+(intake + enfoque.md)     (consume enfoque.md,     (consume arquitectura.csv,  (tareas
+                            produce arquitectura.csv, enlazado.csv,             ejecutables)
+                            enlazado.csv,             mapa-keywords.csv +
+                            mapa-keywords.csv,        sitio.yaml)
+                            sitio.yaml)
 ```
 
-1. **Discovery** — entrevista/intake estructurado. Output: `docs/superpowers/discovery/YYYY-MM-DD-{cliente}-discovery.md`. Ver `references/01-discovery.md`.
-2. **Design Spec** — el documento de diseño que gobierna todo, secciones §0–§14. Output: `docs/superpowers/specs/YYYY-MM-DD-{cliente}-seo-design.md`. Ver `references/02-spec-skeleton.md`.
-3. **Planes de implementación** — derivados del spec, ejecutables tarea-por-tarea con checkboxes, uno por mes/trimestre. Cada plan termina con un **Self-Review** que mapea cada sección del spec a la(s) fase(s) que la cubren. Output: `docs/superpowers/plans/YYYY-MM-DD-{cliente}-seo-mesN-plan.md`. Ver `references/12-plan-phases.md`.
+El flujo de dos fases, los contratos de consumo y la rama de escenarios están en `references/00b-flujo-y-contratos.md` (leer al empezar).
+
+1. **Discovery + Framing** — entrevista/intake estructurado (Nivel 1 bloqueante) + razonamiento §0 panorama, §0.1 restricción dominante, §1 decisiones, §2 elección de enfoque. No escribe el spec: deja el razonamiento en el discovery doc y en el handoff `arquitectura\data\enfoque.md` que consume arquitectura-seo. Output: `docs/superpowers/discovery/YYYY-MM-DD-{cliente}-discovery.md`. Ver `references/01-discovery.md` y `references/00b-flujo-y-contratos.md`.
+2. **arquitectura-seo** (skill externa) — consume `enfoque.md`, corre el estudio de keywords y entrega el árbol de URLs en `arquitectura\resultados\arquitectura.csv`, `enlazado.csv`, `mapa-keywords.csv` + `sitio.yaml`. master no la ejecuta ni re-deriva esos resultados.
+3. **Ensamblaje del Design Spec** — consume (requerido) los 3 CSV de arquitectura-seo y, si Escenario A, el bundle de diagnóstico, para redactar el spec, secciones §0–§14. Si falta `arquitectura.csv`, master se detiene y deriva a correr arquitectura-seo — no genera el árbol. Output: `docs/superpowers/specs/YYYY-MM-DD-{cliente}-seo-design.md`. Ver `references/02-spec-skeleton.md`.
+4. **Planes de implementación** — derivados del spec, ejecutables tarea-por-tarea con checkboxes, uno por mes/trimestre. Cada plan termina con un **Self-Review** que mapea cada sección del spec a la(s) fase(s) que la cubren. Output: `docs/superpowers/plans/YYYY-MM-DD-{cliente}-seo-mesN-plan.md`. Ver `references/12-plan-phases.md`.
 
 El spec se construye con el skill `superpowers:brainstorming`; los planes con `superpowers:writing-plans`; la ejecución con `superpowers:subagent-driven-development` o `executing-plans`.
 
@@ -33,12 +40,12 @@ El spec se construye con el skill `superpowers:brainstorming`; los planes con `s
 
 ## Cómo usar este skill
 
-**Si empiezas un proyecto nuevo:** trabaja el pipeline en orden.
+**Si empiezas un proyecto nuevo:** trabaja el pipeline en orden. Ver `references/00b-flujo-y-contratos.md` para el flujo completo de dos fases y los contratos de consumo.
 1. Corre discovery (`references/01-discovery.md`) — no avances sin los datos del Nivel 1 (bloqueantes).
-2. **Ubica el rubro** en `references/00-parametrizacion-vertical.md` e **identifica la restricción dominante** (ver principio 1 abajo) antes de decidir arquitectura.
-3. **Si el sitio ya existe con tráfico:** lee `references/13-migracion-sitio-existente.md` — el inventario y el benchmark van ANTES de diseñar la arquitectura, y la Fase 1 del plan cambia por completo.
-4. Elige enfoque de arquitectura justificando descartados y trade-off (`references/03-architecture.md`).
-5. Redacta el spec sección por sección (`references/02-spec-skeleton.md`), apoyándote en las referencias temáticas.
+2. **Ubica el rubro** en `references/00-parametrizacion-vertical.md` e **identifica la restricción dominante** (ver principio 1 abajo). En Framing eliges y justificas el **enfoque** de arquitectura (descartados + trade-off, `references/03-architecture.md`) y lo dejas escrito en el handoff `enfoque.md` — el árbol de URLs completo lo produce arquitectura-seo a partir de ese enfoque, no este skill.
+3. **Si el sitio ya existe con tráfico:** lee `references/13-migracion-sitio-existente.md` — el inventario y el benchmark van ANTES de correr arquitectura-seo, y la Fase 1 del plan cambia por completo.
+4. Deriva a (o confirma que ya corrió) arquitectura-seo con `enfoque.md`. Si `arquitectura\resultados\arquitectura.csv` no existe todavía, detente aquí — no hay spec sin ese artefacto.
+5. Redacta el spec sección por sección (`references/02-spec-skeleton.md`), consumiendo `arquitectura.csv`, `enlazado.csv` y `mapa-keywords.csv` de arquitectura-seo y apoyándote en las referencias temáticas.
 6. Deriva planes de implementación por fase (`references/12-plan-phases.md`).
 
 **Si refinas un proyecto existente:** ve directo a la referencia temática relevante (schema, GEO, local, KPIs…).
@@ -78,6 +85,7 @@ Hazlos explícitos en cada spec. Son la diferencia entre un plan que funciona y 
 | Archivo | Cuándo leerlo |
 |---|---|
 | `references/00-parametrizacion-vertical.md` | Tras discovery, antes de arquitectura — tabla de parámetros por rubro |
+| `references/00b-flujo-y-contratos.md` | Al empezar — dos fases, contratos de consumo, degradación, escenarios |
 | `references/01-discovery.md` | Al iniciar — cuestionario de 4 niveles para el intake |
 | `references/02-spec-skeleton.md` | Para redactar el spec — esqueleto §0–§14 |
 | `references/03-architecture.md` | Decidir enfoque, URLs, content-types, internal linking, anti-canibalización |
@@ -102,6 +110,7 @@ Hazlos explícitos en cada spec. Son la diferencia entre un plan que funciona y 
 ## Anti-patrones
 
 - **Saltarse discovery / la restricción dominante** → plan genérico que no rankea.
+- **Regenerar el árbol de URLs, el estudio de keywords o el grafo de schema que ya producen arquitectura-seo / schema-graph** → duplicación y drift. master CONSUME esos artefactos; si faltan, se detiene y deriva.
 - **Copiar la arquitectura matriz cruzada de AioTech a un negocio pequeño** → páginas thin, canibalización, penalización (especialmente grave en YMYL). Elige el enfoque por el tamaño/recursos reales.
 - **Markup falso o credenciales inventadas** → violación de guidelines de Google. Innegociable.
 - **GEO como apéndice** → AI Overviews ya se come tráfico; va integrado al contenido desde el día 1.
