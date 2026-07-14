@@ -1,5 +1,7 @@
 # Plantilla — Brief de contenido (1 página por pieza)
 
+> **Delegación.** Este brief = lista de páginas del árbol (`arquitectura.csv`) + notas estratégicas. La ESTRUCTURA de secciones la produce `diseño-secciones`; el COPY informacional largo, `content-engine`. No re-diseñes secciones ni redactes el cuerpo aquí.
+
 ```
 TÍTULO PROVISIONAL: ...
 TIPO: [hub | spoke | sector | ubicación | caso | pillar | cluster | core]

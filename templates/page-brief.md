@@ -1,5 +1,7 @@
 # Plantilla — Brief de página con copy (para §14 del spec)
 
+> **Delegación.** Este brief = lista de páginas del árbol (`arquitectura.csv`) + notas estratégicas. La ESTRUCTURA de secciones la produce `diseño-secciones`; el COPY informacional largo, `content-engine`. No re-diseñes secciones ni redactes el cuerpo aquí.
+
 ## Convenciones globales (definir una vez, aplican a todas)
 | Elemento | Especificación |
 |---|---|
