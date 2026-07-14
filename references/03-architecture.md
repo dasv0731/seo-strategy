@@ -41,7 +41,7 @@ regenerar, no ensamblar.
    *"(derivado de arquitectura.csv; fuente de verdad ahí)"*.
 3. Añade la **capa estratégica** que arquitectura-seo NO aporta: por qué esta arquitectura honra la
    restricción dominante (§0.1), qué page-types vigilar en los decision gates, y el racional de
-   `accion` (keep/301/fusionar/eliminar) leído de la columna `accion` para sitio existente.
+   `accion` (mantener/301/fusionar/eliminar) leído de la columna `accion` para sitio existente.
 4. §4 internal linking: **consume `enlazado.csv`** igual (referencia + resumen del patrón
    hub-spoke + mix de anchor). No re-derives el enlazado.
 

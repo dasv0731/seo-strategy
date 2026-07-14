@@ -28,7 +28,7 @@ Datos del cliente antes de tocar nada técnico: crear **checklist de datos priva
 10. **Páginas del hito** — copy (**redacción → content-engine**; **estructura de secciones → diseño-secciones**) + montaje + menús + legales (privacidad/términos).
 11. **GBP setup** completo.
 12. **NAP citations** top 5.
-13. **Pre-launch** — validación de schema, performance, mobile, links/404, forms, robots/sitemap, checklist.
+13. **Pre-launch** — validación de schema (**→ schema-graph**), performance, mobile, links/404, forms, robots/sitemap, checklist.
 14. **Launch** — submit sitemap + IndexNow, anunciar, solicitar indexación en GSC, monitoreo.
 15. **Post-launch monitoring** — semana 1: monitoreo diario + iteraciones.
 
@@ -38,7 +38,7 @@ Apéndice del plan: datos a confirmar + resumen ejecutivo.
 Tabla que mapea **cada sección §1-§14 del spec → la(s) fase(s) que la cubren**. Garantiza trazabilidad spec↔plan y que nada del spec quedó sin implementar.
 
 ## Definition of Done del hito
-Checklist de cierre: producción con HTTPS/sin-www/headers · páginas core publicadas, indexables, con schema válido · grafo JSON-LD sin errores · GBP en verificación + NAP consistente · GSC+Bing+GA4 + sitemap + eventos de conversión · robots.txt + llms.txt · CWV en target mobile · (YMYL: disclaimers + protección de datos presentes) · content-types + templates listos para el siguiente mes.
+Checklist de cierre: producción con HTTPS/sin-www/headers · páginas core publicadas, indexables, con schema válido · grafo JSON-LD sin errores (**→ schema-graph**) · GBP en verificación + NAP consistente · GSC+Bing+GA4 + sitemap + eventos de conversión · robots.txt + llms.txt · CWV en target mobile (**→ seo-vitals**) · (YMYL: disclaimers + protección de datos presentes) · content-types + templates listos para el siguiente mes.
 
 ## Validación final de lanzamiento
-PSI mobile · tap targets/texto · indexabilidad (sin noindex accidental, "discourage search engines" desmarcado) · schema de todas las páginas · enlaces internos/404 (páginas aún no creadas → "próximamente", **nunca enlazar a 404**) · conversión end-to-end · solicitar indexación en GSC.
+PSI mobile (**→ seo-vitals**) · tap targets/texto · indexabilidad (sin noindex accidental, "discourage search engines" desmarcado) · schema de todas las páginas (**→ schema-graph**) · enlaces internos/404 (páginas aún no creadas → "próximamente", **nunca enlazar a 404**) · conversión end-to-end · solicitar indexación en GSC.

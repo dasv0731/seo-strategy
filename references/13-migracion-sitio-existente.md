@@ -27,6 +27,8 @@ El KPI de una migración es **retención, no crecimiento** (objetivo: ≥90-95% 
 
 Cada URL del inventario recibe exactamente una decisión. El % de kill/consolidate suele ser alto en sitios viejos (tags, archivos, páginas thin) — eso es salud, no pérdida.
 
+**Puente con la columna `accion` de `arquitectura.csv`:** la matriz de arriba es la **DECISIÓN estratégica**; su **materialización** es la columna `accion` que **emite arquitectura-seo** con el enum real `nueva | mantener | 301 | fusionar | eliminar`. Mapeo: `keep → mantener` · `improve → mantener + rewrite` (o `301` si cambia la URL) · `consolidate → fusionar` · `kill → eliminar` (410, o `301` al padre si tiene backlinks). Un agente que lea la columna `accion` interpreta esos valores, no los términos keep/improve/consolidate/kill.
+
 ## Quick wins M1-M2 (el ROI más rápido del año 1)
 Con GSC histórico disponible, esto se hace **aunque la migración se retrase**:
 1. **Striking distance**: queries en posición 5-15 → rewrite de title/meta (CTR), reforzar enlaces internos hacia esas páginas desde hubs y páginas fuertes, completar el contenido contra el top 3 actual del SERP.
