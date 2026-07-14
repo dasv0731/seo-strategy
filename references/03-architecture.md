@@ -20,6 +20,9 @@ El enfoque se elige por tamaño/recursos **y** por lo que el SERP premia hoy. Pa
 - Con datos en vivo: vía `orquestador-seo` (`claude-seo:seo-sxo` para page-type mismatch, `seo-dataforseo` para SERPs). Manual: incógnito + clasificar el top 10.
 - Este juicio **caduca** (principio 10): re-revisar en cada decision gate.
 
+### i18n: elección estructural (si discovery Nivel 1 marca bilingüe/multi-región)
+La estructura de idioma es una decisión de **lógica dominante**, no de diseño de slugs: decídela aquí y regístrala en `enfoque.md` para que arquitectura-seo emita el árbol con el prefijo/estructura de idioma correcto. Orden por defecto: subdirectorio `/en/` (consolida autoridad) > subdominio > ccTLD (solo multi-región real con equipos separados). El árbol saldrá con esa estructura.
+
 ---
 
 ## §3 (ENSAMBLAJE) — Arquitectura de URLs: CONSUMIR el árbol
@@ -54,7 +57,7 @@ Las queries **informacionales viven en el blog** (pillar + clusters) y **enlazan
 ---
 
 ## Bilingüe / multi-región (solo si discovery Nivel 1 lo marca)
-- Estructura: subdirectorios `/en/` (default — consolida autoridad) > subdominios > ccTLDs (solo multi-región real con equipos separados).
-- Hreflang recíproco + auto-referente por página; `x-default` a la versión principal.
-- **Solo abrir un idioma si habrá contenido completo y mantenido en él** — medio sitio traducido = thin + señales mixtas. Mejor un idioma bien que dos a medias.
-- Implementación y auditoría: `claude-seo:seo-hreflang`.
+La estructura de idioma se **decidió en el FRAMING (§2)** y se registró en `enfoque.md`. Aquí no se diseña: se **verifica** y se delega.
+- **Verificar** que el árbol (`arquitectura.csv`) refleja la estructura de idioma decidida en el framing (subdirectorio/subdominio/ccTLD) y que hay **paridad por idioma** (cada versión con contenido equivalente, sin ramas thin). Anotar cualquier desajuste para los gates.
+- **Criterio estratégico (se conserva):** abrir un idioma solo si habrá contenido completo y mantenido en él — medio sitio traducido = thin + señales mixtas. Mejor un idioma bien que dos a medias.
+- **Implementación y auditoría de hreflang** (recíproco, auto-referente por página, `x-default` a la versión principal): `claude-seo:seo-hreflang`. No se diseña aquí.
