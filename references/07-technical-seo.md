@@ -1,5 +1,7 @@
 # 07 · Technical SEO foundation
 
+**master fija los OBJETIVOS técnicos (no los mide).** Este archivo son *targets y requisitos*. La **medición** (lab CWV/Lighthouse/PSI, CrUX field, deep-dive de rendimiento) → **seo-vitals**; el **crawl** (Screaming Frog: issues, structured data, status) → **extraccion**. master declara el target en el spec; el agente de build/las skills de datos lo verifican.
+
 Stack-agnóstico: los **targets y reglas** valen para cualquier CMS o framework. Lo que importa es el resultado medible, no la herramienta que lo produce.
 
 ## Hosting / CDN
@@ -13,6 +15,8 @@ Hosting de alto rendimiento **cerca de la audiencia** + CDN con optimización de
 | CLS | ≤ 0.05 | ≤ 0.05 |
 | TTFB | ≤ 600ms | ≤ 400ms |
 | FCP | ≤ 1.5s | ≤ 1.2s |
+
+> **Cómo se mide → seo-vitals** (Lighthouse/PSI lab con throttling, CrUX field de usuarios reales, deep-dive de traza). master **no corre** la auditoría ni Lighthouse: fija el *target*. Gate de aceptación: CWV passing en **≥80% mobile** (ver `10-kpis.md`).
 
 ## Optimizaciones obligatorias
 - **Imágenes**: WebP + AVIF fallback; hero ≤ 150KB; `width`/`height` explícitos; lazy load excepto el LCP; **alt text descriptivo obligatorio** (natural, sin stuffing) + nombre de archivo con keyword (`mantenimiento-chillers-lima.webp`, no `IMG_1234.jpg`).
@@ -77,5 +81,5 @@ E-commerce, programático, publishers: **análisis de logs** (qué rastrea Googl
 | Diario | Backup |
 | Semanal | Updates menores; security; GBP Insights |
 | Quincenal | Auditar 404s en GSC + redirects |
-| Mensual | Crawl completo (Screaming Frog); PSI/CWV; schema; NAP citations |
-| Trimestral | Lighthouse + Sitebulb; pen-test básico; review del stack de herramientas |
+| Mensual | Re-crawl (**→ extraccion**); medición CWV/PSI (**→ seo-vitals**); validación de schema (**→ schema-graph**); NAP citations |
+| Trimestral | Deep-dive de rendimiento (**→ seo-vitals**); pen-test básico; review del stack de herramientas |

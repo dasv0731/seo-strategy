@@ -1,5 +1,7 @@
 # 09 · Plan de contenido 12 meses
 
+**Delegación:** master planifica **QUÉ y CUÁNDO** (roadmap, cadencia, roles, longitudes, mix de intención). La **REDACCIÓN** de cada pieza → **content-engine**. La **ESTRUCTURA de secciones** de cada página → **diseño-secciones**. La metodología del roadmap de abajo **no cambia**: es el plan que master fija; solo la ejecución (redactar / estructurar secciones) tiene dueño en otra skill.
+
 ## Modelo de producción (híbrido)
 El **experto dicta** outline + datos clave (30 min de audio o doc breve) → **redactor SEO** transcribe a copy → **el experto revisa y firma** antes de publicar (E-E-A-T). Costo orientativo: $80-150 pieza larga, $40-80 pieza corta.
 - AioTech: output sostenible **4-6 piezas/mes**.
@@ -52,7 +54,7 @@ Priorizar producción hacia queries que **todavía generan clic**: transaccional
 | LinkedIn long-form | 800-1.500 |
 
 ## Estructura común de un hub
-H1 + subhead + **TL;DR citable** + "¿Para quién es?" + señales/bullets + "Cómo trabajo/operamos" (sin promesas) + modalidad/cobertura + FAQ + enlaces internos + CTA del canal principal (p.ej. WhatsApp prellenado, reserva, trial).
+Patrón de referencia (el **diseño fino de secciones por página → diseño-secciones**): H1 + subhead + **TL;DR citable** + "¿Para quién es?" + señales/bullets + "Cómo trabajo/operamos" (sin promesas) + modalidad/cobertura + FAQ + enlaces internos + CTA del canal principal (p.ej. WhatsApp prellenado, reserva, trial).
 
 ## Promoción cross-channel por pieza
 ```

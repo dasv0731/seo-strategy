@@ -13,19 +13,19 @@ Output: `docs/superpowers/plans/YYYY-MM-DD-{cliente}-seo-mesN-plan.md`
 ## Fase 0 — Pre-requisitos (BLOQUEANTE)
 Datos del cliente antes de tocar nada técnico: crear **checklist de datos privada**, marcar datos críticos por fase, confirmar dominio (whois), **validar credenciales reales** (YMYL), confirmar compromisos operativos sostenibles del copy.
 
-**Sitio existente con tráfico:** insertar las fases M0-M2 de `references/13-migracion-sitio-existente.md` (inventario+benchmark, matriz keep/kill, mapa 301) antes de la Fase 1; Pre-launch (13) añade el crawl diff staging vs producción y Launch/Post-launch (14-15) usan su ventana de monitoreo.
+**Sitio existente con tráfico:** insertar las fases M0-M2 de `references/13-migracion-sitio-existente.md` (inventario+benchmark, matriz keep/kill, mapa 301) antes de la Fase 1. El **inventario keep/improve/consolidate/kill + `mapeo-301.csv` los produce arquitectura-seo (modo migración)** — estas fases los **consumen**, no los regeneran. Pre-launch (13) añade el crawl diff staging vs producción y Launch/Post-launch (14-15) usan su ventana de monitoreo.
 
 ## Las 15 fases (genéricas, reordenables según stack)
 1. **Infraestructura** — hosting, DNS/CDN, SSL, config base, .htaccess/redirects.
 2. **Hardening + módulos core** — security, backups, redirects, cleanup de bloat.
-3. **Stack SEO** — motor SEO + custom fields + registro de content-types + field groups + sitemap.
-4. **Schemas custom** — módulo que inyecta JSON-LD por content-type (grafo con `@id`).
-5. **Builder + templates + componentes** — plantillas por content-type + bloques de internal linking reutilizables.
+3. **Stack SEO** — motor SEO + custom fields + registro de content-types (**según el árbol de `arquitectura.csv`**, ya producido por arquitectura-seo) + field groups + sitemap.
+4. **Schemas custom** — el módulo **inyecta** el grafo JSON-LD que **ya produjo schema-graph** (snippets por content-type con `@id` resuelto); **no se diseña ni valida el schema en esta fase**.
+5. **Builder + templates + componentes** — plantillas por content-type + bloques de internal linking reutilizables (**según `enlazado.csv`**, ya producido por arquitectura-seo).
 6. **Performance** — caché, imágenes (WebP/AVIF), fonts/critical CSS.
 7. **Forms + conversión** — anti-spam, prefill contextual, WhatsApp/booking.
 8. **Tracking + Analytics** — GA4, GTM, GSC, Bing, CRM, eventos de conversión.
 9. **Foundation files** — robots.txt, llms.txt, sitemap live.
-10. **Páginas del hito** — copy + montaje + menús + legales (privacidad/términos).
+10. **Páginas del hito** — copy (**redacción → content-engine**; **estructura de secciones → diseño-secciones**) + montaje + menús + legales (privacidad/términos).
 11. **GBP setup** completo.
 12. **NAP citations** top 5.
 13. **Pre-launch** — validación de schema, performance, mobile, links/404, forms, robots/sitemap, checklist.
