@@ -1,32 +1,41 @@
-# 08 · Keyword research y clustering
+# 09 · Keyword research y mapa por cluster — CONSUMIR
 
-## Metodología (4 pasos)
-1. **Seed expansion** — cada servicio/área flagship genera ~80-150 keywords (DataForSEO Labs, Keyword Planner, SERP scraping manual, "People Also Ask").
-2. **Filtrado por intent** — informacional / navegacional / comercial / transaccional.
-3. **Mapeo 1 keyword principal + 3-5 secundarias por página** — evita canibalización (una página, una intención dominante).
-4. **Local modifier strategy** — `[servicio] + [ciudad]` se sirve desde `/ubicaciones/[ciudad]`; `[servicio] + [sector]` desde `/sectores/[sector]`.
+**NO corras el estudio de keywords aquí.** arquitectura-seo ya lo hizo:
+`Clientes\<slug>\arquitectura\resultados\mapa-keywords.csv` (keyword, cluster_id, es_principal,
+volumen, dificultad, cpc, tendencia, intencion, fuente). Si te descubres inventando volúmenes o
+listas de keywords, **DETENTE**.
 
-## Estructura de una tabla de cluster
-Una por servicio flagship + secundarios + por sector + por ubicación:
+**Recipe:** referencia `mapa-keywords.csv` como fuente de verdad; embebe un resumen derivado (un
+cluster por servicio flagship/secundario/sector/ubicación + tabla de total de páginas indexables
+año 1, leída del árbol); añade la lectura estratégica (qué clusters son la apuesta del año 1 según
+la restricción dominante). El análisis continuo (quick wins, canibalización) es de seo-analisis-gsc.
 
-| Keyword | Intent | Página canónica | Vol. | Dificultad | SERP hoy | Prioridad |
+**Si falta `mapa-keywords.csv`:** DETENERSE y derivar a correr arquitectura-seo. No reconstruyas el estudio tú.
+
+---
+
+## Resumen derivado por cluster (leído de `mapa-keywords.csv`)
+No re-tabules keywords a mano. Agrupa `mapa-keywords.csv` por `cluster_id` — un cluster por servicio flagship, secundario, sector y ubicación — y embebe en §9 del spec un resumen compacto marcado *"(derivado de mapa-keywords.csv; fuente de verdad ahí)"*:
+
+| Cluster | Keyword principal (`es_principal`) | Página canónica | Vol. | Dificultad | SERP hoy | Prioridad |
 |---|---|---|---|---|---|---|
-| automatización industrial | comercial | hub | 200-500 | media | AI Overview + service pages | P1 |
-| programación PLC Siemens | comercial | spoke PLC | 30-100 | baja | service pages nicho | P1 |
-| empresa automatización Quito | transaccional | `/ubicaciones/quito` | 30-100 | baja | local pack + directorios | P2 |
-| permisos ARCERNNR | informacional | blog | — | baja | guías, sin AI Overview | P3 |
+| automatización | automatización industrial | hub | 200-500 | media | AI Overview + service pages | P1 |
+| PLC | programación PLC Siemens | spoke PLC | 30-100 | baja | service pages nicho | P1 |
+| ubicación Quito | empresa automatización Quito | `/ubicaciones/quito` | 30-100 | baja | local pack + directorios | P2 |
+| permisos (info) | permisos ARCERNNR | blog | — | baja | guías, sin AI Overview | P3 |
 
-- **Dificultad**: KD de la herramienta o proxy manual (DR del top 10 vs el propio).
-- **SERP hoy**: features presentes (¿AI Overview? ¿local pack? ¿shopping?) + **qué tipo de página rankea** (ver SERP reality check en `03`). Columna que caduca — re-revisar en gates (principio 10).
-- **Prioridad**: valor de negocio (flagship/margen/intent) × esfuerzo (dificultad + contenido necesario). P1 se produce primero; una keyword de volumen alto con SERP hostil puede ser P3.
+- `Vol.`, `Dificultad`, `intencion` y `tendencia` **se leen de las columnas del CSV**, no se estiman aquí.
+- **SERP hoy** (features presentes + qué page-type rankea) y **Prioridad** son la **capa estratégica** que master añade sobre el CSV: valor de negocio (flagship/margen/intent) × esfuerzo (dificultad + contenido necesario). P1 se produce primero; una keyword de volumen alto con SERP hostil puede ser P3. La lectura del SERP **caduca** (principio 10) — re-revisar en los gates; con datos en vivo vía el SERP reality check de `03` / `orquestador-seo`.
+- Cada cluster de servicio define su **pillar de blog** + N posts cluster (cola larga). Las queries informacionales → blog, enlazando al hub comercial (separación de intent en `03`).
 
-Cada cluster de servicio define su **pillar de blog** + N posts cluster (cola larga). Las queries informacionales → blog, enlazando al hub comercial.
+## Qué clusters son la apuesta del año 1 (capa estratégica — se conserva)
+Leyendo el resumen contra la **restricción dominante (§0.1)**, master decide qué clusters concentran la inversión de contenido del año 1 y cuáles esperan a fase 2. Esta priorización es lo que arquitectura-seo NO aporta: el CSV trae los números; el juicio de dónde apostar lo pone el spec.
 
 ## Disciplina anti-thin (clave en YMYL y negocios pequeños)
-**Abrir un spoke solo cuando haya volumen Y contenido único** que lo justifique. Validar con data GSC trimestral antes de expandir. En negocios pequeños, empezar con hubs y dejar spokes para fase 2.
+**Abrir un spoke solo cuando haya volumen Y contenido único** que lo justifique. En negocios pequeños, empezar con hubs y dejar spokes para fase 2. La **validación continua** (¿el cluster ganó tracción?, quick wins, canibalización real) es de **seo-analisis-gsc** con data GSC trimestral antes de expandir — no se simula aquí.
 
-## Total de páginas indexables esperadas (año 1)
-Tabla de planificación — ejemplos de los dos casos:
+## Total de páginas indexables (año 1) — leído del árbol
+El conteo por tipo se **deriva del árbol** (`arquitectura.csv`, ver `03`), no se inventa. Embébelo como parte del resumen derivado para dimensionar el esfuerzo de contenido:
 
 | Tipo | AioTech (matriz) | Inspira (especialidad) |
 |---|---|---|
@@ -40,4 +49,4 @@ Tabla de planificación — ejemplos de los dos casos:
 | Cluster posts | 30-40 | 20-30 |
 | **Total año 1** | **~80-95** | **~45-60** |
 
-El tamaño del inventario debe ser **sostenible con los recursos reales** de producción de contenido (ver `09-content-roadmap.md`).
+El inventario debe ser **sostenible con los recursos reales** de producción de contenido (ver `09-content-roadmap.md`).
