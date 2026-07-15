@@ -183,8 +183,15 @@ modelo de fases espejo de los escenarios A/B con la espina FRAMING→arquitectur
 borradas; README/INSTALL alineados. 6 tasks vía subagent-driven (implementer+reviewer Opus por task).
 Diseño y plan en `docs/rework/2026-07-14-g4-orquestador-seo-rework-{design,plan}.md`.
 
-**G5 (menor) · seo-vitals usa `cwv\seo.db` aparte.** Integración con dashboard marcada "futuro".
-→ Decidir: ¿unificar en `data\seo.db` o dejar la CWV en su base y que el dashboard lea ambas?
+**G5 · Raíz única por cliente. ✅ HECHO (2026-07-15):** retirada la raíz vieja
+`Herramientas\SEO Master\<slug>\`. extraccion blinda los durables de `data\` (contrato
+`DURABLES` = seo.db, seo.db-wal, seo.db-shm, clarity-heatmaps\ en `crawlear-cliente.py` + SKILL.md);
+`migrar_raiz.py` (`docs/rework/scripts/`, idempotente, TDD) migró metalectro a `Clientes\metalectro\`
+(seo.db 40,5 MB con merge de las tablas `geo_*` del stub, conexiones, clusters.json, plans\,
+reportes\, clarity-heatmaps) y neutralizó la raíz vieja (`conexiones.json.pre-merge`; queda como
+backup, nada borrado). esacero/golgana/aiotech pendientes de correr el mismo script. La unificación
+de `cwv\seo.db` en `data\seo.db` (texto original de este gap) queda DIFERIDA como decisión futura.
+Diseño y plan en `docs/rework/2026-07-15-g5-raiz-unica-{design,plan}.md`.
 
 ---
 
