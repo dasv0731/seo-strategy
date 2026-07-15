@@ -191,6 +191,10 @@ Diseño y plan en `docs/rework/2026-07-14-g4-orquestador-seo-rework-{design,plan
 reportes\, clarity-heatmaps) y neutralizó la raíz vieja (`conexiones.json.pre-merge`; queda como
 backup, nada borrado). esacero/golgana/aiotech pendientes de correr el mismo script. La unificación
 de `cwv\seo.db` en `data\seo.db` (texto original de este gap) queda DIFERIDA como decisión futura.
+En la migración de metalectro las tablas exclusivas del stub que estaban VACÍAS
+(`geo_hallazgos`/`geo_menciones`/`geo_paginas`) no se preservaron, pero es benigno (geo-audit las
+recrea con `CREATE TABLE IF NOT EXISTS` al conectar); el fix B2 de `migrar_raiz.py` ya las preserva
+(schema-only incluido) para los próximos clientes.
 Diseño y plan en `docs/rework/2026-07-15-g5-raiz-unica-{design,plan}.md`.
 
 ---

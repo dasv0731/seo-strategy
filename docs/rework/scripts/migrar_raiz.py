@@ -219,8 +219,11 @@ def precheck(origen: Path, destino: Path) -> dict:
     # poblada en el stub cuyo nombre TAMBIÉN existe en el origen es solapamiento
     # aunque el origen la tenga con 0 filas — copiar el origen encima perdería
     # las filas del stub en silencio. Decisión humana => abort atómico.
-    exclusivas = sorted(t for t, n in inv_stub.items()
-                        if n > 0 and t not in inv_origen)
+    #   - exclusivas: nombre SOLO en el stub (no en el origen). Se re-inyectan
+    #     SIEMPRE, con filas o schema-only (0 filas), porque el copy2 del origen
+    #     no las trae — las tablas vacías del stub (geo_paginas, etc.) se perderían.
+    #   - solapadas: nombre en AMBOS lados y el stub tiene filas => abort.
+    exclusivas = sorted(t for t in inv_stub if t not in inv_origen)
     solapadas = sorted(t for t, n in inv_stub.items()
                        if n > 0 and t in inv_origen)
     if solapadas:
@@ -383,16 +386,18 @@ def _ejecutar(origen: Path, destino: Path, dry: bool) -> int:
     if dry:
         _log("DRY", f"destino: {destino}  (se crearía si falta)")
         migrar_db(origen, destino, exclusivas, dry=True)
-        copiar_si_falta(_p(origen, "conexiones", "conexiones.json"),
-                        _p(destino, "conexiones", "conexiones.json"), dry=True)
-        copiar_si_falta(_p(origen, "conexiones", "conexiones.md"),
-                        _p(destino, "conexiones", "conexiones.md"), dry=True)
         merge_carpeta(_p(origen, "data", "clarity-heatmaps"),
                       _p(destino, "data", "clarity-heatmaps"), dry=True)
         merge_carpeta(_p(origen, "plans"), _p(destino, "plans"), dry=True)
         merge_carpeta(_p(origen, "reportes"), _p(destino, "reportes"), dry=True)
         copiar_si_falta(_p(origen, "clusters.json"),
                         _p(destino, "clusters.json"), dry=True)
+        # conexiones al final (tras verificar en apply): el destino no debe
+        # resolver como cliente hasta que la migración esté verificada.
+        copiar_si_falta(_p(origen, "conexiones", "conexiones.json"),
+                        _p(destino, "conexiones", "conexiones.json"), dry=True)
+        copiar_si_falta(_p(origen, "conexiones", "conexiones.md"),
+                        _p(destino, "conexiones", "conexiones.md"), dry=True)
         neutralizar(origen, dry=True)
         _log("DRY", "fin dry-run (nada modificado)")
         return 0
@@ -400,10 +405,6 @@ def _ejecutar(origen: Path, destino: Path, dry: bool) -> int:
     # 2) apply
     destino.mkdir(parents=True, exist_ok=True)
     migrar_db(origen, destino, exclusivas, dry=False)
-    copiar_si_falta(_p(origen, "conexiones", "conexiones.json"),
-                    _p(destino, "conexiones", "conexiones.json"), dry=False)
-    copiar_si_falta(_p(origen, "conexiones", "conexiones.md"),
-                    _p(destino, "conexiones", "conexiones.md"), dry=False)
     merge_carpeta(_p(origen, "data", "clarity-heatmaps"),
                   _p(destino, "data", "clarity-heatmaps"), dry=False)
     merge_carpeta(_p(origen, "plans"), _p(destino, "plans"), dry=False)
@@ -411,12 +412,18 @@ def _ejecutar(origen: Path, destino: Path, dry: bool) -> int:
     copiar_si_falta(_p(origen, "clusters.json"),
                     _p(destino, "clusters.json"), dry=False)
 
-    # 3) verificación (falla => exit 2 SIN neutralizar)
+    # 3) verificación (falla => exit 2 SIN neutralizar ni copiar conexiones:
+    #    el destino NO debe resolver como cliente hasta estar verificado)
     if not verificar(origen, destino, inv_origen, inv_stub, exclusivas):
         _log("X", "ABORT verificación: NO se neutraliza el origen")
         return 2
 
-    # 4) neutralizar la raíz vieja
+    # 4) conexiones + neutralización: recién ahora el destino resuelve como
+    #    cliente (conexiones.json/.md presentes) y la raíz vieja se neutraliza.
+    copiar_si_falta(_p(origen, "conexiones", "conexiones.json"),
+                    _p(destino, "conexiones", "conexiones.json"), dry=False)
+    copiar_si_falta(_p(origen, "conexiones", "conexiones.md"),
+                    _p(destino, "conexiones", "conexiones.md"), dry=False)
     neutralizar(origen, dry=False)
     _log("OK", "migración completa")
     return 0

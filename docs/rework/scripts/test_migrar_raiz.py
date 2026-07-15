@@ -232,6 +232,32 @@ def test_abort_solapamiento_por_nombre_stub_poblado_origen_vacio(roots):
     assert (origen / "conexiones" / "conexiones.json").exists()
 
 
+def test_exclusiva_vacia_del_stub_sobrevive(roots):
+    """B2: una tabla cuyo nombre está SOLO en el stub y está VACÍA (schema-only,
+    p.ej. geo_paginas) debe re-inyectarse SIEMPRE. El copy2 del origen no la trae,
+    así que sin el fix se perdería en silencio."""
+    origen, destino = roots
+    con = sqlite3.connect(str(destino / "data" / "seo.db"))
+    con.execute("CREATE TABLE geo_paginas (id INTEGER PRIMARY KEY, url TEXT)")  # 0 filas
+    con.commit()
+    con.close()
+
+    rc = _run(origen, destino, apply=True)
+    assert rc == 0
+
+    dest_db = destino / "data" / "seo.db"
+    con = sqlite3.connect(str(dest_db))
+    existe = con.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name='geo_paginas'").fetchone()
+    con.close()
+    assert existe is not None                       # la tabla vacía sobrevivió
+    assert _count(dest_db, "geo_paginas") == 0      # schema-only, sigue vacía
+    # el resto de la fusión intacto
+    assert _count(dest_db, "geo_checks") == 2
+    assert _count(dest_db, "gsc_daily") == 3
+    assert _count(dest_db, "hallazgos") == 1
+
+
 def test_no_clobber(roots):
     origen, destino = roots
     # destino ya tiene plans\CHECKLIST-x.md con OTRO contenido
