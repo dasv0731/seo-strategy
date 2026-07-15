@@ -18,6 +18,7 @@ stdlib solamente (pathlib, shutil, sqlite3, argparse). Sin invocaciones externas
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import sqlite3
 import sys
@@ -109,14 +110,14 @@ def _reinyectar_exclusivas(backup_db: Path, destino_db: Path,
                     f'INSERT INTO "{t}" ({collist}) VALUES ({placeholders})',
                     filas)
             # índices / triggers propios de la tabla
-            for (isql,) in src.execute(
-                    "SELECT sql FROM sqlite_master "
+            for (iname, isql) in src.execute(
+                    "SELECT name, sql FROM sqlite_master "
                     "WHERE type IN ('index','trigger') AND tbl_name=? "
                     "AND sql IS NOT NULL", (t,)):
                 try:
                     dst.execute(isql)
-                except sqlite3.OperationalError:
-                    pass
+                except sqlite3.OperationalError as err:
+                    _log("X", f"no se pudo recrear índice/trigger {iname}: {err}")
         # sqlite_sequence explícito (fiel al stub aun con borrados previos)
         seqs = _seq_map(src)
         for t in tablas:
@@ -214,14 +215,18 @@ def precheck(origen: Path, destino: Path) -> dict:
     stub = _stub_ref(destino)
     inv_stub = inventario_db(stub) if stub is not None else {}
 
+    # clasificación por PRESENCIA de nombre (no por conteo del origen): una tabla
+    # poblada en el stub cuyo nombre TAMBIÉN existe en el origen es solapamiento
+    # aunque el origen la tenga con 0 filas — copiar el origen encima perdería
+    # las filas del stub en silencio. Decisión humana => abort atómico.
     exclusivas = sorted(t for t, n in inv_stub.items()
                         if n > 0 and t not in inv_origen)
     solapadas = sorted(t for t, n in inv_stub.items()
-                       if n > 0 and inv_origen.get(t, 0) > 0)
+                       if n > 0 and t in inv_origen)
     if solapadas:
         return {"ok": False,
-                "reason": ("tablas solapadas pobladas en AMBOS lados "
-                           f"(decisión humana): {', '.join(solapadas)}")}
+                "reason": ("tablas del stub pobladas cuyo nombre también existe "
+                           f"en el origen (decisión humana): {', '.join(solapadas)}")}
 
     # conexiones.json
     ocj = _p(origen, "conexiones", "conexiones.json")
@@ -352,7 +357,7 @@ def neutralizar(origen: Path, dry: bool) -> None:
     if dry:
         _log("DRY", f"neutralizar: {cj.name} -> {dest.name}")
         return
-    cj.rename(dest)
+    os.replace(cj, dest)
     _log("OK", f"neutralizado: {cj.name} -> {dest.name}")
 
 

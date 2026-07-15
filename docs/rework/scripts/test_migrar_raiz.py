@@ -193,6 +193,45 @@ def test_abort_solapamiento(roots):
     assert (origen / "conexiones" / "conexiones.json").exists()
 
 
+def test_abort_solapamiento_por_nombre_stub_poblado_origen_vacio(roots):
+    """Tercera categoría: una tabla cuyo nombre existe en AMBOS lados, poblada
+    en el stub pero VACÍA (0 filas) en el origen. Copiar el origen encima
+    perdería en silencio las filas del stub -> debe abortar por nombre (exit 2),
+    dejar el destino byte-idéntico y no crear backup."""
+    origen, destino = roots
+    # origen: gsc_daily/hallazgos habituales + tabla 'foo' EXISTENTE pero VACÍA
+    (origen / "data" / "seo.db").unlink()
+    _mk_origen_db(origen / "data" / "seo.db")
+    con = sqlite3.connect(str(origen / "data" / "seo.db"))
+    con.execute("CREATE TABLE foo (id INTEGER, val TEXT)")  # 0 filas
+    con.commit()
+    con.close()
+    # stub: geo_checks + tabla 'foo' POBLADA (3 filas)
+    (destino / "data" / "seo.db").unlink()
+    con = sqlite3.connect(str(destino / "data" / "seo.db"))
+    con.execute("CREATE TABLE geo_checks "
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, check_name TEXT)")
+    con.executemany("INSERT INTO geo_checks (check_name) VALUES (?)",
+                    [("robots",), ("llms",)])
+    con.execute("CREATE TABLE foo (id INTEGER, val TEXT)")
+    con.executemany("INSERT INTO foo VALUES (?,?)",
+                    [(1, "a"), (2, "b"), (3, "c")])
+    con.commit()
+    con.close()
+
+    before_d = _hash_tree(destino)
+    rc = _run(origen, destino, apply=True)
+    assert rc == 2
+    # destino byte-idéntico: ni backup ni copia parcial
+    assert _hash_tree(destino) == before_d
+    assert not (destino / "data" / "seo.db.stub-pre-merge").exists()
+    assert not (destino / "conexiones" / "conexiones.json").exists()
+    # las 3 filas del stub siguen intactas
+    assert _count(destino / "data" / "seo.db", "foo") == 3
+    # origen NO neutralizado
+    assert (origen / "conexiones" / "conexiones.json").exists()
+
+
 def test_no_clobber(roots):
     origen, destino = roots
     # destino ya tiene plans\CHECKLIST-x.md con OTRO contenido
